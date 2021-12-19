@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name = "suite1" verbose = "1">
+    <test name="servicetest">
+        <packages>
+            <package name = "by.denisov.task02arrays.test.service"/>
+        </packages>
+        <classes>
+            <class name="by.denisov.task02arrays.test.service.BubbleSortTest">
+                <methods>
+                    <!--><exclude name="timeChangeTest"/><!-->
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
