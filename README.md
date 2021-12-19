@@ -1,1 +1,0 @@
-# EpamTraining-task02arrays
