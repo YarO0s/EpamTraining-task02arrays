@@ -2,28 +2,48 @@ package by.denisov.task02arrays.service;
 
 import by.denisov.task02arrays.model.ArrayData;
 
-public class MergeSort implements AbstractSortingAlgorithm {
+import java.util.Arrays;
 
-    @Override
-    public void sort(ArrayData initArray) {
+public class MergeSort implements AbstractOperation {
 
-    }
-    /*public ArrayData sort(ArrayData initialData){
-        if(initialData.size()==1){
-            return initialData;
+    /**
+     * Merge sort algorithm interface method
+     * @param arrayInstance - input data set as ArrayData instance
+     */
+    public void sort(ArrayData arrayInstance) {
+        double initialArray[] = new double[arrayInstance.size()];
+        for(int i = 0; i<arrayInstance.size();i++){
+            initialArray[i] = arrayInstance.get(i).doubleValue();
         }
-        double[] leftArray = new double[initialData.size()/2];
-        for(int i = 0;i < initialData.size()/2; i++){
-            leftArray[i] = initialData.get(i);
+        initialArray = sort(initialArray);
+        arrayInstance.clear();
+        for(double value : initialArray){
+        arrayInstance.add(value);
         }
-        double[] rightArray = new double[initialData.size()- leftArray.length];
-        for(int i = initialData.size()/2; i < initialData.size(); i++){
-            rightArray[i] = initialData.get(i);
-        }
-
-        return merge(leftArray, rightArray);
     }
 
+    /**
+     * Performs actual sorting operation
+     * @param initialArray - input data set as primitive array
+     * @return result
+     */
+    private double[] sort(double initialArray[]){
+        if(initialArray.length<=1){
+            return initialArray;
+        }
+        double[] leftArray = Arrays.copyOfRange(initialArray,0, initialArray.length/2);
+
+        double[] rightArray = Arrays.copyOfRange(initialArray, initialArray.length/2, initialArray.length);
+
+        return merge(sort(leftArray), sort(rightArray));
+    }
+
+    /**
+     * performs merging and comparison operations
+     * @param leftArray - left array partition
+     * @param rightArray - right array partition
+     * @return merged and sorted array partitions
+     */
     private double[] merge(double[] leftArray, double[] rightArray){
         int leftIndex = 0;
         int rightIndex = 0;
@@ -36,14 +56,15 @@ public class MergeSort implements AbstractSortingAlgorithm {
             else if(rightIndex==rightArray.length){
                 resultArray[i] = leftArray[leftIndex++];
             }
-            else if(leftArray[leftIndex]>rightArray[rightIndex]){
+            else if(leftArray[leftIndex]>=rightArray[rightIndex]){
                 resultArray[i] = leftArray[leftIndex++];
             }
-            else if(rightArray[rightIndex]>leftArray[leftIndex]){
+            else if(rightArray[rightIndex]>=leftArray[leftIndex]){
                 resultArray[i] = rightArray[rightIndex++];
             }
         }
+
         return resultArray;
-    }*/
+    }
 }
 

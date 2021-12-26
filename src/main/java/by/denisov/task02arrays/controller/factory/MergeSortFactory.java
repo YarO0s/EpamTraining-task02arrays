@@ -1,14 +1,13 @@
 package by.denisov.task02arrays.controller.factory;
 
 import by.denisov.task02arrays.controller.DataParsingException;
-import by.denisov.task02arrays.controller.command.Command;
 import by.denisov.task02arrays.controller.command.MergeSortCommand;
 import by.denisov.task02arrays.model.ArrayData;
 import by.denisov.task02arrays.model.Message;
-import by.denisov.task02arrays.service.AbstractSortingAlgorithm;
+import by.denisov.task02arrays.service.AbstractOperation;
 import by.denisov.task02arrays.service.MergeSort;
 
-public class MergeSortFactory implements SortAbstractFactory {
+public class MergeSortFactory implements OperationsAbstractFactory {
     private Message message;
 
     public MergeSortFactory(Message newMessage){
@@ -16,26 +15,12 @@ public class MergeSortFactory implements SortAbstractFactory {
     }
 
     @Override
-    public MergeSort createSortInstance(){
-        return new MergeSort();
-    }
+    public MergeSortCommand createCommand(){
+        ArrayData arrayData = new ArrayData();
 
-    @Override
-    public ArrayData createArrayData() throws DataParsingException {
-        try {
-            ArrayData arrayData = new ArrayData();
-            for(String i : message.getCommandData()){
-                arrayData.add(Double.parseDouble(i));
-            }
-            return arrayData;
-        } catch(Exception e){
-            throw new DataParsingException();
-        }
-    }
+        MergeSort sortingAlgorithm = new MergeSort();
 
-    @Override
-    public MergeSortCommand createCommand(ArrayData newArrayData, AbstractSortingAlgorithm newSortingAlgorithm){
-        MergeSortCommand command = new MergeSortCommand(newArrayData, newSortingAlgorithm);
+        MergeSortCommand command = new MergeSortCommand(arrayData, sortingAlgorithm, message);
         return command;
     }
 }

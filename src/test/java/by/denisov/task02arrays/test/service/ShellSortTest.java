@@ -12,12 +12,18 @@ public class ShellSortTest {
     @DataProvider(name = "shellSortDataProvider")
     public Object[][] shellSortDataProvider(){
         return new Object[][] {
-                {new double[]{1,2,3,4,5}, new double[]{5,4,3,2,1}},
+                {new Double[]{1.0,2.0,3.0,4.0,5.0}, new Double[]{5.0,4.0,3.0,2.0,1.0}},
+                {new Double[]{1.0,2.0,3.0,4.0}, new Double[]{4.0,3.0,2.0,1.0}},
+                {new Double[]{1.0,2.0}, new Double[]{2.0,1.0}},
+                {new Double[]{-1.0,-2.0}, new Double[]{-1.0,-2.0}},
+                {new Double[]{}, new Double[]{}},
+                {new Double[]{1.0}, new Double[]{1.0}},
+                {new Double[]{1.0,2.0,3.0,3.0,3.0,3.0}, new Double[]{3.0,3.0,3.0,3.0,2.0,1.0}},
         };
     }
 
     @Test(description = "shellSortTest", dataProvider = "shellSortDataProvider")
-    public void shellSortTest(double[] array1, double[] array2){
+    public void shellSortTest(Double[] array1, Double[] array2){
         ArrayData initialData = new ArrayData();
         initialData.addAll(array1);
         ArrayData expectedData = new ArrayData();

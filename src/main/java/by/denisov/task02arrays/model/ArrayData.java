@@ -2,33 +2,33 @@ package by.denisov.task02arrays.model;
 
 import java.util.*;
 
-public class ArrayData {
+public class ArrayData<T extends Number> {
     private final List data = new LinkedList<Number>();
 
     public int size(){
         return data.size();
     }
 
-    public <T extends Number>void add(T initValue){
+    public void add(T initValue){
         data.add(initValue);
     }
 
-    public <T extends Number> T get(int index){
+    public T get(int index){
         T returnValue = (T) data.get(index);
         return returnValue;
     }
 
-    //public <T extends Number> T[] getAll(){
-        //T[] array = new T[data.size()];
-    //}
+    public void clear(){
+        data.clear();
+    }
 
-    public void set(int i2, Number number) {
+    public void set(int i2, T number) {
         data.set(i2, number);
     }
 
-    public void addAll(double[] values){
+    public void addAll(T... values){
         for(int i = 0; i< values.length; i++){
-            double val = values[i];
+            T val = values[i];
             data.add(val);
         }
     }
@@ -44,14 +44,14 @@ public class ArrayData {
     @Override
     public boolean equals(Object o){
         if(o instanceof ArrayData) {
-            ArrayData arrayData = (ArrayData) o;
+            ArrayData<T> arrayData = (ArrayData) o;
             if (this.size() != arrayData.size()) {
                 return false;
             }
             for (int i = 0; i < this.size(); i++) {
-                double thisvalue = this.get(i);
-                double outervalue = arrayData.get(i);
-                if (thisvalue != outervalue) {
+                T instanceValue = this.get(i);
+                T outerValue = arrayData.get(i);
+                if (!instanceValue.equals(outerValue)) {
                     return false;
                 }
             }

@@ -2,12 +2,15 @@ package by.denisov.task02arrays.service;
 
 import by.denisov.task02arrays.model.ArrayData;
 
+/**
+ * Bubble sort class
+ */
+public class BubbleSort implements AbstractOperation {
 
-//TODO decide about return value
-//  -return instance and not void sort method
-//  -return void and change object through link
-
-public class BubbleSort implements AbstractSortingAlgorithm {
+    /**
+     * Sorts input data using bubble sort approach
+     * @param initialInstance - input data set
+     */
     public void sort(ArrayData initialInstance){
         ArrayData resultInstance = new ArrayData();
         for(int i =0; i<initialInstance.size(); i++){

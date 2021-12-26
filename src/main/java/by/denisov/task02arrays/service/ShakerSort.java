@@ -2,7 +2,11 @@ package by.denisov.task02arrays.service;
 
 import by.denisov.task02arrays.model.ArrayData;
 
-public class ShakerSort implements AbstractSortingAlgorithm {
+public class ShakerSort implements AbstractOperation {
+    /**
+     * Performs sorting operation using shaker sort approach
+     * @param initialArray - initial data set
+     */
     public void sort(ArrayData initialArray) {
         for(int i = 0; i<initialArray.size()/2; i++){
             boolean swapped = false;
